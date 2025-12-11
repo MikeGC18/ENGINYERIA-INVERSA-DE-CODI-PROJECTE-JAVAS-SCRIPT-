@@ -217,10 +217,40 @@ Aquest procés es repeteix **aproximadament 60 vegades per segon** gràcies a `r
 
 ## 5. Events escoltats
 
-| Event | Handler | Funció |
-|-------|---------|---------|
-| `keydown` | `moveShip()` | Mou la nau |
-| `keyup` | `shoot()` | Dispara |
+El joc utilitza **events del teclat** per permetre la interacció del jugador amb la nau i els projectils. Aquests events escolten l’input de l’usuari i criden les funcions corresponents per modificar l’estat del joc.
+
+| Event     | Handler       | Funció principal                         |
+|-----------|---------------|-----------------------------------------|
+| `keydown` | `moveShip()`  | Mou la nau cap a l’esquerra o dreta segons la tecla premuda (`ArrowLeft` o `ArrowRight`). |
+| `keyup`   | `shoot()`     | Dispara una bala des de la nau quan es deixa anar la tecla `Space`. |
+
+---
+
+### 🔹 Explicació detallada
+
+1. **`keydown` → `moveShip()`**
+   - Aquest event s’activa **quan es prem una tecla**.
+   - La funció `moveShip()` comprova:
+     - Si la tecla és `ArrowLeft` → decrementa `ship.x`.
+     - Si la tecla és `ArrowRight` → incrementa `ship.x`.
+   - També comprova que la nau **no surti fora del canvas**, evitant errors visuals o que la nau desaparegui.
+   - Impacte: modifica contínuament la posició de la nau en temps real segons l’input del jugador.
+
+2. **`keyup` → `shoot()`**
+   - Aquest event s’activa **quan es deixa anar la tecla**.
+   - La funció `shoot()` crea un objecte bala amb propietats com `x`, `y`, `width`, `height` i `used`.
+   - La nova bala s’afegeix a `bulletArray`, passant a formar part del bucle de moviment i col·lisions.
+   - Impacte: permet disparar bales de manera controlada sense necessitat de prémer constantment la tecla.
+
+---
+
+### 🔹 Importància en l’estat del joc
+
+- Aquests events són l’únic mecanisme per interactuar amb el joc.
+- **`keydown`** i **`keyup`** connecten l’usuari amb la lògica de moviment i dispar.
+- Sense aquests events, el jugador no podria moure la nau ni atacar els aliens, i el joc seria estàtic.
+- Són clau per sincronitzar l’entrada de l’usuari amb el bucle de `update()`.
+
 
 ---
 
