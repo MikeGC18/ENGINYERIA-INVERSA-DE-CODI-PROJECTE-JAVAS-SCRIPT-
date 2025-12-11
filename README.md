@@ -1,27 +1,27 @@
 # ENGINYERIA-INVERSA-DE-CODI-PROJECTE-JAVAS-SCRIPT-
-# 📘 Informe Tècnic — Anàlisi del repositori *space-invaders* (ImKennyYip)
+# Informe Tècnic — Anàlisi del repositori *space-invaders* (ImKennyYip)
 
-🔗 **Repo original analitzat:** https://github.com/ImKennyYip/space-invaders  
-🎮 **Tecnologia:** JavaScript + HTML5 Canvas  
-📝 **Objectiu:** Documentar detalladament l’estructura i funcionament del joc Space Invaders per comprendre la seva lògica i aplicació a un projecte propi.
+**Repo original analitzat:** https://github.com/ImKennyYip/space-invaders  
+**Tecnologia:** JavaScript + HTML5 Canvas  
+**Objectiu:** Documentar detalladament l’estructura i funcionament del joc Space Invaders per comprendre la seva lògica i aplicació a un projecte propi.
 
 ---
 
-## 🛠️ 1. Principals variables que representen l’estat del joc
+## 1. Principals variables que representen l’estat del joc
 
-### 🧩 Tauler (Canvas)
+### Tauler (Canvas)
 - `board`, `context` — referència al canvas i context 2D.
 - `boardWidth`, `boardHeight` — dimensions.
 - `tileSize`, `rows`, `columns` — definició de graella i mida base.
 
-### 🚀 Nau del jugador
+### Nau del jugador
 - `shipWidth`, `shipHeight`
 - `shipX`, `shipY`
 - `shipVelocityX`
 - `ship` — objecte amb posició, mides i imatge.
 - `shipImg` — sprite.
 
-### 👾 Aliens
+### Aliens
 - `alienArray` — llista d'enemics.
 - `alienWidth`, `alienHeight`
 - `alienX`, `alienY`
@@ -30,17 +30,17 @@
 - `alienVelocityX`
 - `alienImg` — sprite enemic.
 
-### 🔫 Bales
+### Bales
 - `bulletArray`
 - `bulletVelocityY`
 
-### 🎯 Estat del joc
+### Estat del joc
 - `score`
 - `gameOver`
 
 ---
 
-## 🔄 2. Funcions que modifiquen l’estat del joc
+## 2. Funcions que modifiquen l’estat del joc
 
 ### `window.onload`
 - Inicialització general.
@@ -69,7 +69,7 @@ Funció central del joc:
 
 ---
 
-## 🎨 3. Interacció amb el DOM (Canvas)
+##  3. Interacció amb el DOM (Canvas)
 
 El joc empra la Canvas API:
 
@@ -82,7 +82,7 @@ Tot es dibuixa des de `update()` cada frame.
 
 ---
 
-## 🎮 4. Control del flux del joc
+## 4. Control del flux del joc
 
 ### **`update()`**
 És la funció que controla tot:
@@ -97,7 +97,7 @@ Tot es dibuixa des de `update()` cada frame.
 
 ---
 
-## ⌨️ 5. Events escoltats
+## 5. Events escoltats
 
 | Event | Handler | Funció |
 |-------|---------|---------|
@@ -106,17 +106,17 @@ Tot es dibuixa des de `update()` cada frame.
 
 ---
 
-## ⏱️ 6. Temporització del joc
+## 6. Temporització del joc
 
 El joc utilitza:
 
-### ✔️ `requestAnimationFrame(update)`
+### `requestAnimationFrame(update)`
 
 No es fan servir `setInterval` ni `setTimeout`.
 
 ---
 
-## 🌀 7. Control d’animacions
+## 7. Control d’animacions
 
 Les animacions funcionen així:
 - Actualitzar posicions cada frame.
@@ -128,7 +128,7 @@ Això és animació basada en fotogrames.
 
 ---
 
-## 💥 8. Detecció de col·lisions
+## 8. Detecció de col·lisions
 
 S’utilitza AABB (Axis-Aligned Bounding Box):
 
