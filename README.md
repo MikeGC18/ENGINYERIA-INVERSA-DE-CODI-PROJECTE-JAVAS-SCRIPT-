@@ -43,90 +43,99 @@
 ## 2. Funcions que modifiquen l’estat del joc
 
 ### `window.onload`
-La funció window.onload actua com a punt d’inicialització del joc. Quan la pàgina es carrega:
-**-Inicialitza variables globals** que controlen el funcionament del joc (velocitats, dimensions, estats).
-**-Carrega les imatges principals (nau, alien, explosió)**. Aquestes imatges es fan servir durant tot el joc, i per això s’han de tenir carregades abans de començar.
-**-Crea els aliens inicials** cridant createAliens().
-**-Configura el bucle principal del joc**, que s’executa mitjançant requestAnimationFrame(update).
-**-Afegeix els listeners** d’interacció perquè el jugador pugui moure la nau i disparar.
+La funció `window.onload` actua com a punt d’inicialització del joc. Quan la pàgina es carrega:
 
-Impacte en l’estat: Aquesta funció estableix l'estat inicial del joc i prepara tot el necessari perquè la lògica pugui començar.
+- Inicialitza variables globals que controlen el funcionament del joc (velocitats, dimensions, estats).
+- Carrega les imatges principals (nau, alien, explosió). Aquestes imatges es fan servir durant tot el joc.
+- Crea els aliens inicials cridant `createAliens()`.
+- Configura el bucle principal del joc, que s’executa mitjançant `requestAnimationFrame(update)`.
+- Afegeix els listeners d’interacció perquè el jugador pugui moure la nau i disparar.
+
+**Impacte en l’estat:** Aquesta funció estableix l'estat inicial del joc i prepara tot el necessari perquè la lògica pugui començar.
+
+---
 
 ### `createAliens()`
-**Aquesta funció és responsable de generar la matriu d’aliens enemics.**
--Reinicia **alienArray**, que conté tots els aliens actius.
--Genera aliens de forma ordenada amb files i columnes.
--Assigna a cada alien propietats com:
-       ·x, y (posició)
-       ·width, height
-       ·alive = true
+Aquesta funció és responsable de generar la matriu d’aliens enemics.
 
-Reinicia també **alienCount**, variable clau per saber quants aliens queden
-Aquesta funció defineix l'estat inicial d’un nivell nou.
+- Reinicia `alienArray`, que conté tots els aliens actius.
+- Genera aliens de forma ordenada amb files i columnes.
+- Assigna a cada alien propietats com:
+  - `x`, `y` (posició)
+  - `width`, `height`
+  - `alive = true`
+- Reinicia també `alienCount`, variable clau per saber quants aliens queden.
+
+**Impacte en l’estat:** Defineix l'estat inicial d’un nivell nou.
+
+---
 
 ### `moveShip(e)`
-**Gestió de moviments horitzontals de la nau del jugador.**
--Comprova la tecla premuda (ArrowLeft, ArrowRight).
--Actualitza ship.x segons la direcció.
--Limita el moviment perquè no surti fora del canvas.
+Gestió de moviments horitzontals de la nau del jugador.
 
-Modifica contínuament la posició de la nau.
-- Mou la nau (canvia `ship.x`).
+- Comprova la tecla premuda (`ArrowLeft`, `ArrowRight`).
+- Actualitza `ship.x` segons la direcció.
+- Limita el moviment perquè no surti fora del canvas.
+
+**Impacte en l’estat:** Modifica contínuament la posició de la nau.
+
+---
 
 ### `shoot(e)`
 Quan el jugador dispara:
--Detecta si s’ha premut la tecla Space.
--Crea un nou objecte bala amb propietats:
-       ·x, y: apareix al centre de la nau
-       ·width, height
-       ·used = false: indica si la bala ja ha col·lisionat
--Afegeix la bala a bulletArray.
-Afegeix nous projectils al joc.
 
+- Detecta si s’ha premut la tecla `Space`.
+- Crea un nou objecte bala amb propietats:
+  - `x`, `y`: apareix al centre de la nau
+  - `width`, `height`
+  - `used = false`: indica si la bala ja ha col·lisionat
+- Afegeix la bala a `bulletArray`.
+
+**Impacte en l’estat:** Afegeix nous projectils al joc.
+
+---
 
 ### `update()`
-Aquesta és la funció més important del joc. Actua com el bucle principal, executant-se contínuament amb requestAnimationFrame().
+Aquesta és la funció més important del joc. Actua com el bucle principal, executant-se contínuament amb `requestAnimationFrame()`.
 
 Dins la funció, es fan múltiples actualitzacions d’estat:
 
-**· Moviment i actualització d'aliens**
--Actualitza la seva posició (x, y).
--Controla canvis de direcció quan toquen una vora.
--Baixa tota la matriu d’aliens quan cal.
--Marca aliens com a "morts" (alive = false) quan hi ha col·lisions.
+- **Moviment i actualització d'aliens**
+  - Actualitza la seva posició (`x`, `y`).
+  - Controla canvis de direcció quan toquen una vora.
+  - Baixa tota la matriu d’aliens quan cal.
+  - Marca aliens com a "morts" (`alive = false`) quan hi ha col·lisions.
 
-**· Moviment de bales**
--Cada bala puja verticalment.
--Si surt del canvas, s’elimina.
--Si toca un alien, es marca com used = true
+- **Moviment de bales**
+  - Cada bala puja verticalment.
+  - Si surt del canvas, s’elimina.
+  - Si toca un alien, es marca com `used = true`.
 
-**· Detecció de col·lisions**
-Comprova la sobreposició de rectangles entre:
--Bales i aliens
--Aliens i el jugador (final de la partida)
+- **Detecció de col·lisions**
+  - Comprova la sobreposició de rectangles entre bales i aliens.
+  - Comprova la sobreposició entre aliens i jugador (final de la partida).
+  - Quan hi ha col·lisió:
+    - Es modifica la puntuació.
+    - Es redueix `alienCount`.
+    - Es reprodueix una animació d'explosió.
 
-Quan hi ha col·lisió:
--Es modifica puntuació.
--Es redueix alienCount.
--Es reprodueix una animació d'explosió.
+- **Control de nivells**
+  - Quan `alienCount` arriba a 0:
+    - Es crea un nou conjunt d'aliens (`createAliens()`).
+    - S’incrementa la velocitat dels enemics.
 
-**· Control de nivells**
-Quan alienCount arriba a 0:
--Es crea un nou conjunt d'aliens (createAliens()).
--S’incrementa la velocitat dels enemics.
+- **Control de condicions de derrota**
+  - Si un alien arriba massa avall:
+    - `gameOver = true`.
+    - S’atura la lògica del joc i només es mostra el missatge.
 
-**· Control de condicions de derrota**
-Si un alien arriba massa avall:
--gameOver = true
--S’atura la lògica del joc i només es mostra el missatge.
-
-**· Renderització (repintat)**
-La funció també dibuixa constantment:
--Fons
--Nau del jugador
--Aliens vius
--Projectils
--Puntuació i estat de partida
+- **Renderització (repintat)**
+  - La funció dibuixa constantment:
+    - Fons
+    - Nau del jugador
+    - Aliens vius
+    - Projectils
+    - Puntuació i estat de partida
 
 ---
 
