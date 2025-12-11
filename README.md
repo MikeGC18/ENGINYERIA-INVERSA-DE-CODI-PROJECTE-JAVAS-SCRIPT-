@@ -139,16 +139,78 @@ Dins la funció, es fan múltiples actualitzacions d’estat:
 
 ---
 
-##  3. Interacció amb el DOM (Canvas)
+## 3. Interacció amb el DOM (Canvas)
 
-El joc empra la Canvas API:
+El joc utilitza la **Canvas API de HTML5** per gestionar tota la part visual. En lloc de manipular directament elements HTML com `div` o `img` per a cada objecte, tot es dibuixa dins d’un únic `<canvas>` de manera eficient.
 
-- `drawImage()` — dibuixa sprites.
-- `fillRect()` — dibuixa bales.
-- `clearRect()` — neteja el canvas.
-- `fillText()` — dibuixa puntuació.
+---
 
-Tot es dibuixa des de `update()` cada frame.
+### Funcions principals del Canvas
+
+- **`drawImage()`**
+  - Serveix per dibuixar **sprites i imatges** al canvas.
+  - Exemple en el joc:
+    ```js
+    context.drawImage(shipImg, ship.x, ship.y, ship.width, ship.height);
+    context.drawImage(alienImg, alien.x, alien.y, alien.width, alien.height);
+    ```
+  - S’usa tant per la nau com per cada alien viu.
+  - Permet controlar exactament **la posició i mida** de cada imatge.
+
+- **`fillRect()`**
+  - S’utilitza per dibuixar **bales**.
+  - Exemple:
+    ```js
+    context.fillStyle = "white";
+    context.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+    ```
+  - És una manera senzilla i eficient de representar projectils sense necessitat d’imatges.
+
+- **`clearRect()`**
+  - Neteja tota la zona del canvas abans de redibuixar el frame.
+  - Exemple:
+    ```js
+    context.clearRect(0, 0, board.width, board.height);
+    ```
+  - Evita que les imatges es superposin i crea l’efecte d’animació contínua.
+
+- **`fillText()`**
+  - Serveix per mostrar **text** al canvas, com ara la puntuació.
+  - Exemple:
+    ```js
+    context.fillStyle = "white";
+    context.font = "16px courier";
+    context.fillText(score, 5, 20);
+    ```
+  - Permet personalitzar **color, font i mida** del text.
+
+---
+
+### Com es gestiona el dibuix
+
+Totes les interaccions amb el Canvas es fan **dins de la funció `update()`**, que és el bucle principal del joc:
+
+1. Es neteja el canvas (`clearRect`).
+2. Es dibuixa la nau en la seva nova posició (`drawImage`).
+3. Es dibuixen tots els aliens vius (`drawImage` en un bucle).
+4. Es dibuixen totes les bales actives (`fillRect`).
+5. Es dibuixa la puntuació (`fillText`).
+
+Aquest procés es repeteix **aproximadament 60 vegades per segon** gràcies a `requestAnimationFrame(update)`, creant un efecte d’animació fluida i controlada.
+
+---
+
+### 🔹 Avantatges d’utilitzar Canvas
+
+- **Eficient:** tot es dibuixa en un sol element HTML.
+- **Control precís:** posició i mida exacta per a cada element.
+- **Animació fluida:** amb `requestAnimationFrame`, el joc es veu suau.
+- **Flexible:** fàcil d’afegir nous elements (noves bales, aliens o power-ups) sense modificar el DOM directament.
+
+---
+
+**Impacte en l’estat:** Tot i que no modifica variables com `ship.x` o `alienArray`, el Canvas **reflecteix visualment l’estat intern del joc**. És el pont entre les dades del joc i la seva representació a la pantalla.
+
 
 ---
 
