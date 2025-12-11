@@ -200,20 +200,6 @@ Aquest procés es repeteix **aproximadament 60 vegades per segon** gràcies a `r
 
 ---
 
-### 🔹 Avantatges d’utilitzar Canvas
-
-- **Eficient:** tot es dibuixa en un sol element HTML.
-- **Control precís:** posició i mida exacta per a cada element.
-- **Animació fluida:** amb `requestAnimationFrame`, el joc es veu suau.
-- **Flexible:** fàcil d’afegir nous elements (noves bales, aliens o power-ups) sense modificar el DOM directament.
-
----
-
-**Impacte en l’estat:** Tot i que no modifica variables com `ship.x` o `alienArray`, el Canvas **reflecteix visualment l’estat intern del joc**. És el pont entre les dades del joc i la seva representació a la pantalla.
-
-
----
-
 ## 4. Control del flux del joc
 
 ### **`update()`**
