@@ -1,4 +1,3 @@
-# ENGINYERIA-INVERSA-DE-CODI-PROJECTE-JAVAS-SCRIPT-
 # Informe Tècnic — Anàlisi del repositori *space-invaders* (ImKennyYip)
 
 **Repo original analitzat:** https://github.com/ImKennyYip/space-invaders  
