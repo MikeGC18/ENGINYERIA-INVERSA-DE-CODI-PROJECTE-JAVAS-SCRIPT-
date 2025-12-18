@@ -1,6 +1,7 @@
 # Informe Tècnic — Anàlisi del repositori *space-invaders* (ImKennyYip)
 
 **Repo original analitzat:** https://github.com/ImKennyYip/space-invaders  
+**Link video Yotube:** https://youtu.be/v74X5dtDLvg
 **Tecnologia:** JavaScript + HTML5 Canvas  
 **Objectiu:** Documentar detalladament l’estructura i funcionament del joc Space Invaders per comprendre la seva lògica i aplicació a un projecte propi.
 
