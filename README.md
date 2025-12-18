@@ -149,38 +149,38 @@ El joc utilitza la **Canvas API de HTML5** per gestionar tota la part visual. En
 - **`drawImage()`**
   - Serveix per dibuixar **sprites i imatges** al canvas.
   - Exemple en el joc:
-    ```js
+   
     context.drawImage(shipImg, ship.x, ship.y, ship.width, ship.height);
     context.drawImage(alienImg, alien.x, alien.y, alien.width, alien.height);
-    ```
+   
   - S’usa tant per la nau com per cada alien viu.
   - Permet controlar exactament **la posició i mida** de cada imatge.
 
 - **`fillRect()`**
   - S’utilitza per dibuixar **bales**.
   - Exemple:
-    ```js
+   
     context.fillStyle = "white";
     context.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
-    ```
+    
   - És una manera senzilla i eficient de representar projectils sense necessitat d’imatges.
 
 - **`clearRect()`**
   - Neteja tota la zona del canvas abans de redibuixar el frame.
   - Exemple:
-    ```js
+    
     context.clearRect(0, 0, board.width, board.height);
-    ```
+   
   - Evita que les imatges es superposin i crea l’efecte d’animació contínua.
 
 - **`fillText()`**
   - Serveix per mostrar **text** al canvas, com ara la puntuació.
   - Exemple:
-    ```js
+  
     context.fillStyle = "white";
     context.font = "16px courier";
     context.fillText(score, 5, 20);
-    ```
+    
   - Permet personalitzar **color, font i mida** del text.
 
 ---
@@ -225,7 +225,7 @@ El joc utilitza **events del teclat** per permetre la interacció del jugador am
 
 ---
 
-### 🔹 Explicació detallada
+###  Explicació detallada
 
 1. **`keydown` → `moveShip()`**
    - Aquest event s’activa **quan es prem una tecla**.
@@ -243,7 +243,7 @@ El joc utilitza **events del teclat** per permetre la interacció del jugador am
 
 ---
 
-### 🔹 Importància en l’estat del joc
+### Importància en l’estat del joc
 
 - Aquests events són l’únic mecanisme per interactuar amb el joc.
 - **`keydown`** i **`keyup`** connecten l’usuari amb la lògica de moviment i dispar.
