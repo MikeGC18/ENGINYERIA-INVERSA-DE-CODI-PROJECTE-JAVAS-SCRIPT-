@@ -257,7 +257,7 @@ El joc utilitza **events del teclat** per permetre la interacció del jugador am
 
 El joc utilitza:
 
-### `requestAnimationFrame(update)`
+**`requestAnimationFrame(update)`**
 
 No es fan servir `setInterval` ni `setTimeout`.
 
